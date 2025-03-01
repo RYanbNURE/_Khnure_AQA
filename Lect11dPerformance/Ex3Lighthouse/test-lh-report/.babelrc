@@ -1,0 +1,11 @@
+{
+    "presets": [
+        ["@babel/preset-env", {
+            "targets": {
+                "node": "current"
+            },
+            // "include": ["transform-arrow-functions", "es6.map"],
+            // "exclude": ["transform-regenerator", "es6.set"]
+        }]
+    ]
+}

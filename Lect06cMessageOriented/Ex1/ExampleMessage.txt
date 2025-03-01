@@ -1,0 +1,9 @@
+curl -X POST "http://localhost:8080/api/messages" -H "Content-Type: text/plain" -d "Kafka message"
+
+
+
+curl http://localhost:8081/messages
+
+docker-compose down
+
+docker-compose logs -f

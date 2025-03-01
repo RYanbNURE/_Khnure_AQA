@@ -1,0 +1,5 @@
+rootProject.name = 'java-pact-example'
+include 'consumer', 'provider'
+include 'consumer'
+include 'provider'
+

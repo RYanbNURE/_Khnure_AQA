@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    seleniumVersion = '4.10.0'
+    webdriverManagerVersion = '5.4.1'
+    browserMobProxyVersion = '2.1.5'
+    junitVersion = '5.9.3'
+    slf4jVersion = '2.0.7'
+    logbackVersion = '1.4.8'
+    nettyVersion = '4.1.86.Final'
+}
+
+dependencies {
+    testImplementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    testImplementation "io.github.bonigarcia:webdrivermanager:${webdriverManagerVersion}"
+    testImplementation("net.lightbody.bmp:browsermob-core:${browserMobProxyVersion}") {
+        exclude group: 'io.netty', module: 'netty-all'
+    }
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    testImplementation "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    testImplementation "io.netty:netty-all:${nettyVersion}"
+    testImplementation "io.netty:netty-codec-http:${nettyVersion}"
+    testImplementation "io.netty:netty-codec-http2:${nettyVersion}"
+    testImplementation "io.netty:netty-handler:${nettyVersion}"
+    testImplementation "io.netty:netty-transport-native-epoll:${nettyVersion}"
+    testImplementation "io.netty:netty-transport-native-kqueue:${nettyVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}

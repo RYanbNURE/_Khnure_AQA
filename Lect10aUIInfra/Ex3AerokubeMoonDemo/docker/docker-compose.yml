@@ -1,0 +1,16 @@
+version: '3'
+services:
+  moon:
+    image: aerokube/moon:latest
+    ports:
+      - "4444:4444"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -limit 4
+    environment:
+      - MOON_BROWSERS_CONFIG={"firefox": {"default": "88.0"}, "chrome": {"default": "91.0"}}
+
+  moon-ui:
+    image: aerokube/moon-ui:latest
+    ports:
+      - "8080:8080"

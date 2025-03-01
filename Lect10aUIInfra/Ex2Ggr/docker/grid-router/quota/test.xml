@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<qa:browsers xmlns:qa="urn:config.gridrouter.qatools.ru">
+    <browser name="chrome" defaultVersion="latest">
+        <version number="latest">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="91.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="90.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+    </browser>
+    <browser name="firefox" defaultVersion="latest">
+        <version number="latest">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="88.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="87.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+    </browser>
+    <browser name="opera" defaultVersion="latest">
+        <version number="latest">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="77.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+        <version number="76.0">
+            <region name="1">
+                <host name="selenoid" port="4444" count="5"/>
+            </region>
+        </version>
+    </browser>
+</qa:browsers>

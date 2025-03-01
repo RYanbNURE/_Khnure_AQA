@@ -1,0 +1,225 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+apply plugin: 'application'
+
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// This is a basic Gradle Groovy build script
+task hello {
+    doLast {
+        println 'Hello, Gradle!'
+    }
+}
+
+// Using 'build.gradle' to set project metadata
+task printMetadata {
+    doLast {
+        println "Group: $group"
+        println "Version: $version"
+    }
+}
+
+task showDependencies {
+    doLast {
+        println 'Defined dependencies:'
+        configurations.compileClasspath.each { println it }
+    }
+}
+
+// Setting task dependencies
+task taskA {
+    doLast {
+        println 'Executing Task A'
+    }
+}
+
+task taskB(dependsOn: 'taskA') {
+    doLast {
+        println 'Executing Task B'
+    }
+}
+
+//Пояснення: Показує, як застосувати та налаштувати плагіни у скрипті Gradle.
+
+application {
+    mainClassName = 'com.example.Main'
+}
+
+task printPlugins {
+    doLast {
+        println 'Applied plugins:'
+        project.plugins.each { println it }
+    }
+}
+
+
+// Configure source sets
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
+
+task printSourceSets {
+    doLast {
+        println 'Source sets:'
+        sourceSets.each { println it }
+    }
+}
+
+// Defining task inputs and outputs
+task copyTask {
+    inputs.file 'src/input.txt'
+    outputs.file 'build/output.txt'
+
+    doLast {
+        copy {
+            from 'src/input.txt'
+            into 'build'
+            rename { 'output.txt' }
+        }
+        println 'File copied from src/input.txt to build/output.txt'
+    }
+}
+
+// Conditional task execution
+task conditionalTask {
+    onlyIf { false }
+
+    doLast {
+        println 'This will not be printed.'
+    }
+}
+
+task conditionalTask2 {
+    onlyIf { true }
+
+    doLast {
+        println 'This will be printed.'
+    }
+}
+
+application {
+    mainClassName = 'com.example.Main'
+    applicationDefaultJvmArgs = ['-Dgreeting=Hello']
+}
+
+task printJvmArgs {
+    doLast {
+        println "Default JVM Args: ${application.applicationDefaultJvmArgs}"
+    }
+}
+
+
+// Using custom Gradle properties
+ext.customProperty = 'customValue'
+
+task printCustomProperty {
+    doLast {
+        println "Custom Property: $customProperty"
+    }
+}
+
+// Using custom Gradle properties
+ext.customProperty = 'customValue'
+
+task printCustomProperty1 {
+    doLast {
+        println "Custom Property: $customProperty"
+    }
+}
+
+// Using environment variables in Gradle
+task printEnvVars {
+    doLast {
+        def envVar = System.getenv('JAVA_HOME')
+        println "JAVA_HOME: $envVar"
+    }
+}
+
+// Running external commands in Gradle
+task runExternalCommand {
+    doLast {
+        def result = "dir".execute().text
+        println "Command output: \n$result"
+    }
+}
+
+// Using custom Gradle tasks
+class CustomTask extends DefaultTask {
+    @TaskAction
+    void greet() {
+        println 'Hello from CustomTask!'
+    }
+}
+
+task customTask(type: CustomTask)
+
+// Using doFirst and doLast in tasks
+task exampleTask {
+    doFirst {
+        println 'This runs first.'
+    }
+    doLast {
+        println 'This runs last.'
+    }
+}
+
+apply plugin: 'java'
+
+// Configuring test tasks
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+    }
+}
+
+task printTestConfig {
+    doLast {
+        println "Test task configuration: ${test.testLogging.events}"
+    }
+}
+
+apply plugin: 'java'
+
+// Generating Javadoc
+javadoc {
+    source = sourceSets.main.allJava
+    destinationDir = file("$buildDir/docs/javadoc")
+    options {
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+    }
+}
+
+task printJavadocConfig {
+    doLast {
+        println "Javadoc destination: ${javadoc.destinationDir}"
+    }
+}

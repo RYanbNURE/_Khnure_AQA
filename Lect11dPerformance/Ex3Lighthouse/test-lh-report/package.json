@@ -1,0 +1,40 @@
+{
+  "name": "test-lh-report",
+  "version": "1.0.0",
+  "description": "Google lighthouse reports",
+  "main": "index.js",
+  "dependencies": {
+    "chrome-launcher": "^0.11.1",
+    "fs": "^0.0.1-security",
+    "lighthouse": "^5.1.0",
+    "minimist": "^1.2.0",
+    "net": "^1.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "eslint-config-epic": "^4.0.3",
+    "jest": "^24.8.0",
+    "jest-teamcity-reporter": "^0.9.0"
+  },
+  "publishConfig": {
+    "registry": "http://nexus-server-01.ol.epicgames.net:8081/nexus/content/repositories/npm-internal/"
+  },
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "report": "yarn build && node ./dist/index.js",
+    "metrics": "yarn build && node ./dist/sendMetrics.js",
+    "test": "jest test --detectOpenHandles --testResultsProcessor=jest-teamcity-reporter --findRelatedTests ./dist/*.*",
+    "ci": "yarn build && node ./dist/index.js && node ./dist/sendMetrics.js && yarn test"
+  },
+  "keywords": [
+    "performance",
+    "reports",
+    "lighthouse"
+  ],
+  "author": "",
+  "license": "ISC"
+}

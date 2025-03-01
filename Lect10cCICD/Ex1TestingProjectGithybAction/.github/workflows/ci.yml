@@ -1,0 +1,64 @@
+name: Gradle CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Проверка кода из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Установка JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Кэширование зависимостей Gradle
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # Проверка прав на выполнение Gradle wrapper
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # Сборка проекта с Gradle
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # Запуск тестов
+      - name: Run tests
+        run: ./gradlew test
+
+      # Публикация результатов тестов
+      - name: Publish Test Results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-results
+          path: build/test-results/test
+
+      # Очистка кэша Gradle
+      - name: Cleanup Gradle Cache
+        # Удаление всех неиспользуемых файлов из кэша Gradle для уменьшения размера кэша
+        # Это важно для самоочищающихся репозиториев, чтобы избежать устаревания кэша
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties

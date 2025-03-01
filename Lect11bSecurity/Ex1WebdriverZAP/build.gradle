@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    seleniumVersion = '4.27.0'
+    webdriverManagerVersion = '5.9.2'
+    jupiterVersion = '5.9.2'
+    zapClientApiVersion = '1.14.0'
+}
+
+dependencies {
+    // Оновлюємо Selenium до останньої стабільної версії
+    implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
+    // Додаємо залежність для HTTP клієнта, який використовується Selenium
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-http-jdk-client
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-http-jdk-client', version: '4.13.0'
+    // Оновлюємо WebDriverManager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+    implementation "org.zaproxy:zap-clientapi:${zapClientApiVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "webdriver.http.factory", "jdk-http-client"
+}

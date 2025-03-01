@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application' // Додаємо плагін application для можливості запуску
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Оновлюємо Selenium до останньої стабільної версії
+    implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
+
+    // Додаємо залежність для HTTP клієнта, який використовується Selenium
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-http-jdk-client
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-http-jdk-client', version: '4.13.0'
+
+
+    // Оновлюємо WebDriverManager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.2'
+
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+application {
+    mainClass = 'com.example.MitmproxySeleniumDemo' // Вказуємо головний клас
+}
+
+test {
+    useJUnitPlatform()
+}

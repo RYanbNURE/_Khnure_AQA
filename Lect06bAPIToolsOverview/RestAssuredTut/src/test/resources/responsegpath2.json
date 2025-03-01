@@ -1,0 +1,16 @@
+{
+  "movie": {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "year": 2010,
+    "ratings": {
+      "critics": 9.1,
+      "audience": 8.8
+    },
+    "cast": [
+      { "name": "Leonardo DiCaprio", "role": "Dom Cobb" },
+      { "name": "Joseph Gordon-Levitt", "role": "Arthur" },
+      { "name": "Elliot Page", "role": "Ariadne" }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    seleniumVersion = '4.15.0'
+    testngVersion = '7.8.0'
+}
+
+dependencies {
+    testImplementation "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    testImplementation "org.testng:testng:${testngVersion}"
+}
+
+test {
+    useTestNG()
+}

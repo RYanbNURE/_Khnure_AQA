@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.vividus:vividus-bdd-engine:0.3.8'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task allureReport(type: io.qameta.allure.gradle.report.AllureReport)
+task cleanAllure(type: io.qameta.allure.gradle.task.AllureClean)

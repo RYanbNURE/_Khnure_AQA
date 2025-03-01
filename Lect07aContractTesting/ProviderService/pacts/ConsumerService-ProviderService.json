@@ -1,0 +1,34 @@
+{
+  "consumer": {
+    "name": "ConsumerService"
+  },
+  "interactions": [
+    {
+      "description": "A request for data",
+      "providerStates": [
+        {
+          "name": "Provider has data"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/provider/data"
+      },
+      "response": {
+        "body": "Hello from Provider!",
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.5.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "ProviderService"
+  }
+}

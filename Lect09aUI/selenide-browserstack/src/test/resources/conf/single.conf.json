@@ -1,0 +1,17 @@
+{
+	"server": "hub-cloud.browserstack.com",
+	"user": "ravilianbekov2",
+	"key": "RuvUyHuCfj3p4w8Sawbv",
+
+	"capabilities": {
+		"project": "Example",
+		"build": "Java Selenide Single",
+		"browserstack.debug": true
+	},
+
+	"environments": {
+		"chrome": {
+			"browser": "chrome"
+		}
+	}
+}

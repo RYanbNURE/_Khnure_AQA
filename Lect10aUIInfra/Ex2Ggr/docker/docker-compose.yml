@@ -1,0 +1,44 @@
+version: '3'
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    ports:
+      - "4444:4444"
+    volumes:
+      - "./:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["-conf", "/etc/selenoid/browsers.json", "-limit", "5"]
+    networks:
+      - grid-network
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest-release
+    ports:
+      - "8080:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    networks:
+      - grid-network
+
+  ggr:
+    image: aerokube/ggr:latest-release
+    ports:
+      - "4445:4444"
+    volumes:
+      - "./grid-router:/etc/grid-router:ro"
+    command: ["-guests-allowed", "-guests-quota", "test", "-quotaDir", "/etc/grid-router/quota", "-users", "/etc/grid-router/users.htpasswd"]
+    networks:
+      - grid-network
+
+  ggr-ui:
+    image: aerokube/ggr-ui:latest-release
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./grid-router:/etc/grid-router:ro"
+    command: ["-listen", ":8888", "-grid-url", "http://ggr:4444", "-users", "/etc/grid-router/users.htpasswd"]
+    networks:
+      - grid-network
+
+networks:
+  grid-network:
+    driver: bridge

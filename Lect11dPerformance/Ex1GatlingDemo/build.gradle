@@ -1,0 +1,46 @@
+plugins {
+    id 'scala'
+    id 'io.gatling.gradle' version '3.13.1.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def scalaVersion = "2.13.10"
+def gatlingVersion = "3.9.0"
+
+dependencies {
+    implementation "org.scala-lang:scala-library:${scalaVersion}"
+
+    gatling "io.gatling.highcharts:gatling-charts-highcharts:${gatlingVersion}"
+    gatling "io.gatling:gatling-app:${gatlingVersion}"
+    gatling "org.scala-lang:scala-library:${scalaVersion}"
+}
+
+gatling {
+    // Gatling version to use for simulations
+    toolVersion = '3.9.0'
+
+    // JVM arguments passed to Gatling
+    jvmArgs = ['-server', '-Xmx1G']
+
+    // Simulations to include
+    simulations = {
+        include "**/*Simulation.scala"
+    }
+
+    // Log level for Gatling
+//    logLevel = 'WARN'
+}
+
+sourceSets {
+    gatling {
+        scala {
+            srcDirs = ["src/gatling/scala"]
+        }
+        resources {
+            srcDirs = ["src/gatling/resources"]
+        }
+    }
+}

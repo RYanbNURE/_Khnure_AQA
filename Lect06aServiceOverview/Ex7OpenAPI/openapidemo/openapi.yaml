@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Simple User API
+  description: An example of a simple User API
+  version: 1.0.0
+
+paths:
+  /user/{userId}:
+    get:
+      summary: Get User by ID
+      description: Returns user information based on ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user to fetch
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "12345"
+        name:
+          type: string
+          example: "John Doe"
+        email:
+          type: string
+          example: "john.doe@example.com"

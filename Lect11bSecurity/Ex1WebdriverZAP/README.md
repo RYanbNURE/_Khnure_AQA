@@ -1,0 +1,1 @@
+C:\Program Files\ZAP\Zed Attack Proxy>zap.bat -daemon -host localhost -port 8080 -config api.disablekey=true

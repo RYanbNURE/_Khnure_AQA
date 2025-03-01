@@ -1,0 +1,14 @@
+{
+  "firefox": {
+    "default": "latest",
+    "versions": ["latest"]
+  },
+  "chrome": {
+    "default": "latest",
+    "versions": ["latest"]
+  },
+  "opera": {
+    "default": "latest",
+    "versions": ["latest"]
+  }
+}

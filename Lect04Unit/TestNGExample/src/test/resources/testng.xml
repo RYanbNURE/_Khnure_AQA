@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestNGExampleSuite">
+    <test name="CalculatorTests">
+        <classes>
+            <class name="com.example.service.CalculatorTest"/>
+        </classes>
+    </test>
+    <test name="UserServiceTests">
+        <classes>
+            <class name="com.example.service.UserServiceTest"/>
+        </classes>
+    </test>
+</suite>

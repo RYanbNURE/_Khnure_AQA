@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "address": {
+    "street": "21B Baker Street",
+    "city": "London",
+    "zip": "NW1 6XE"
+  },
+  "phoneNumbers": ["123-456-7890", "456-789-0123"]
+}

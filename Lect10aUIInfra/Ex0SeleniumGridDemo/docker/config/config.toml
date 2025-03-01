@@ -1,0 +1,7 @@
+[node]
+detect-drivers = false
+drain-after-session-count = 0
+
+[relay]
+url = "http://selenium-hub:4444"
+status-endpoint = "/status"

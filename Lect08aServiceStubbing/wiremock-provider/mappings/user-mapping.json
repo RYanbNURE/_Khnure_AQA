@@ -1,0 +1,17 @@
+{
+    "request": {
+      "method": "GET",
+      "urlPattern": "/users/[0-9]+"
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "jsonBody": {
+        "name": "John Doe",
+        "age": 30,
+        "email": "john.doe@example.com"
+      }
+    }
+  }
